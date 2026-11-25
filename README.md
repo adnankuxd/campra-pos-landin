@@ -27,4 +27,4 @@ npm run build      # creates the `out/` folder
 Stats and testimonials are placeholders — replace them before going public.
 
 ## Pages
-`/` · `/about` · `/portals/[owner|cashier|auditor]` · `/features/[slug]` (14 modules) · `/faq` · `/privacy` · `/terms` · `/leads` (enquiries saved in this browser)
+`/` · `/about` · `/portals/[owner|cashier|auditor]` · `/features/[slug]` (14 modules) · `/faq` · `/privacy` · `/terms` 

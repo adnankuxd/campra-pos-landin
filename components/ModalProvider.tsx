@@ -9,7 +9,6 @@ const ModalCtx = createContext<Ctx>({ open: () => {}, toast: () => {} });
 export const useModal = () => useContext(ModalCtx);
 
 export type Lead = { type: string; at: string; name: string; business: string; phone: string; shops: string; city: string; msg: string };
-export const LEADS_KEY = "campra_leads";
 
 const COPY: Record<Kind, { h: [string, string]; p: string; btn: string }> = {
   demo: { h: ["Book a", "free demo"], p: "Tell us about your shops and we'll show you the system with your products in mind.", btn: "Book my demo" },
@@ -59,8 +58,12 @@ function LeadForm({ kind, extra, onClose }: { kind: Kind; extra?: string; onClos
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [done, setDone] = useState<Lead | null>(null);
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending) return;
     const f = new FormData(e.currentTarget);
     const v = (k: string) => String(f.get(k) || "").trim();
     const errs = {
@@ -71,13 +74,22 @@ function LeadForm({ kind, extra, onClose }: { kind: Kind; extra?: string; onClos
     setErrors(errs);
     if (Object.values(errs).some(Boolean)) return;
     const lead: Lead = { type: kind, at: new Date().toISOString(), name: v("name"), business: v("business"), phone: v("phone"), shops: v("shops"), city: v("city"), msg: v("msg") };
+    const plan = /the (\w+) plan/.exec(extra || "")?.[1] || "";
+    setSending(true);
+    setFailed(false);
     try {
-      const L = JSON.parse(localStorage.getItem(LEADS_KEY) || "[]");
-      L.push(lead);
-      localStorage.setItem(LEADS_KEY, JSON.stringify(L));
-    } catch {}
-    // To receive leads by email, POST `lead` to a form service (Formspree / Web3Forms) here.
-    setDone(lead);
+      const r = await fetch(CONFIG.leadEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind, name: lead.name, business: lead.business, phone: lead.phone, shops: lead.shops, city: lead.city, message: lead.msg, plan, page: location.pathname, website: v("website") }),
+      });
+      if (!r.ok) throw new Error(String(r.status));
+      setDone(lead);
+    } catch {
+      setFailed(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   if (done) {
@@ -86,7 +98,7 @@ function LeadForm({ kind, extra, onClose }: { kind: Kind; extra?: string; onClos
       <div className="okbox">
         <div className="ck"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round"><path d="m5 12 5 5 9-10" /></svg></div>
         <h3>Thank you, <b>{done.name.split(" ")[0]}!</b></h3>
-        <p style={{ color: "var(--mut)", margin: "12px 0 26px", lineHeight: 1.5 }}>We&apos;ve received your details. For a faster reply, send them to us on WhatsApp too.</p>
+        <p style={{ color: "var(--mut)", margin: "12px 0 26px", lineHeight: 1.5 }}>We&apos;ve received your details. Our team will call you within one working day. Need us sooner? Message us on WhatsApp.</p>
         <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
           <a className="btn btn-wa" href={waLink(txt)} target="_blank" rel="noopener"><WaIcon /> Send on WhatsApp</a>
           <button className="btn btn-o" onClick={onClose}>Close<span className="ar"><Arr /></span></button>
@@ -117,8 +129,16 @@ function LeadForm({ kind, extra, onClose }: { kind: Kind; extra?: string; onClos
         </div>
         <div className="fld full"><label>City</label><input name="city" placeholder="e.g. Lahore" /></div>
         <div className="fld full"><label>Message</label><textarea name="msg" rows={3} defaultValue={extra || ""} placeholder="Anything we should know?" /></div>
+        {/* Honeypot for bots: hidden from people */}
+        <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }} />
+        {failed && (
+          <div className="full form-err">
+            Couldn&apos;t send right now. Please try again, or{" "}
+            <a href={waLink(`${COPY[kind].h.join(" ")} — ${CONFIG.brand} POS`)} target="_blank" rel="noopener">message us on WhatsApp</a>.
+          </div>
+        )}
         <div className="full" style={{ marginTop: 6 }}>
-          <button className="btn btn-p" type="submit">{c.btn}<span className="ar"><Arr /></span></button>
+          <button className="btn btn-p" type="submit" disabled={sending} aria-busy={sending}>{sending ? "Sending…" : c.btn}<span className="ar"><Arr /></span></button>
         </div>
       </form>
     </>

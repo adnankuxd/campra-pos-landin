@@ -6,6 +6,8 @@ export const CONFIG = {
   email: "hello@campra.pk",
   playStore: "https://play.google.com/store",
   demoUrl: "https://pos-psi-henna.vercel.app/",
+  // Website enquiries go to this Supabase Edge Function (saves to the leads table, sends WhatsApp + email to the owner).
+  leadEndpoint: "https://tmcgwfjgvuuwgxqwxvwi.supabase.co/functions/v1/submit-lead",
   stats: { shops: "150+", cashiers: "2.5k", bills: "1.6M", bento: "112", happy: "12K" },
 };
 

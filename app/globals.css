@@ -616,3 +616,7 @@ header.nav{padding-inline:max(var(--gutter),calc((100% - var(--maxw))/2))}
 @media(max-width:1100px) and (min-width:1001px){.rc-name{font-size:38px}.rc-amt b{font-size:48px}}
 @media(max-width:1000px){.plans{grid-template-columns:1fr;max-width:440px;gap:44px}.rc-wrap.rc-0,.rc-wrap.rc-2{transform:rotate(0)}.rc-stamp{right:-6px}}
 @media (prefers-reduced-motion:reduce){.rc-stamp{animation:none}.rc-wrap{transition:none}}
+
+.form-err{background:#fdecec;color:#b42318;border-radius:12px;padding:10px 14px;font-size:13px}
+.form-err a{color:inherit;font-weight:600;text-decoration:underline}
+.fg button[disabled]{opacity:.7;cursor:progress}
