@@ -1,7 +1,7 @@
 "use client";
 // Tabs + a live-feeling app frame. Only the sidebar tabs inside the screen are clickable.
 import { useState } from "react";
-import { APPS, AppKey, hotspot } from "@/lib/appdemo";
+import { APPS, AppKey, NAV, NAV_ON, hotspot } from "@/lib/appdemo";
 
 type Setup = { tab: string; app: AppKey; start: string; heading?: string };
 
@@ -12,6 +12,8 @@ export default function AppDemo({ setups, jobs }: { setups: Setup[]; jobs?: bool
   const [cur, setCur] = useState(setup.start);
 
   const screen = screens.find((s) => s.key === cur) || screens[0];
+  // Sidebar positions can change per screen (the cashier POS uses a collapsed icon bar).
+  const rects = NAV_ON[setup.app]?.[screen.key] ?? NAV[setup.app];
 
   return (
     <div className="demo-wrap">
@@ -38,7 +40,7 @@ export default function AppDemo({ setups, jobs }: { setups: Setup[]; jobs?: bool
               <button
                 key={s.key}
                 className={`demo-hot ${s.key === cur ? "on" : ""}`}
-                style={hotspot(s.y)}
+                style={hotspot(rects[s.key])}
                 onClick={() => setCur(s.key)}
                 aria-label={`Open ${s.label}`}
                 title={s.label}

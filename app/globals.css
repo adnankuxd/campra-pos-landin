@@ -504,7 +504,7 @@ footer li a:hover{color:var(--p)}
 .demo-img{width:100%;height:100%;display:block;animation:dfade .35s ease}
 @keyframes dfade{from{opacity:.55}}
 .demo-hot{position:absolute;border-radius:999px;cursor:pointer;background:transparent;transition:background .2s,box-shadow .2s}
-.demo-hot:hover{background:rgba(255,255,255,.09)}
+.demo-hot:hover{background:rgba(142,51,255,.08)}
 .demo-hot.on{cursor:default;background:transparent}
 .demo-hot:focus-visible{outline:2px solid var(--p);outline-offset:2px}
 .demo-tip{text-align:center;color:var(--mut);font-size:13px;margin-top:16px}
