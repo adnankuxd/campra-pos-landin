@@ -67,54 +67,63 @@ export function GenerateReport() {
   return <button onClick={run}>Generate Daily Report</button>;
 }
 
-const PLAN_ICON: Record<string, React.ReactNode> = {
-  Starter: <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z" />,
-  Chain: <><path d="M3 21h18" /><path d="M5 21V10l4-3 4 3v11" /><path d="M13 21V7l3-3 3 3v14" /><path d="M8 14h2M16 11h0M16 15h0" /></>,
-  Enterprise: <><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M10 21v-3h4v3" /></>,
-};
+function Barcode({ seed }: { seed: number }) {
+  const ws = Array.from({ length: 46 }, (_, i) => ((i * 7 + seed * 13) % 4) + 1);
+  const xs = ws.reduce<number[]>((a, w, i) => [...a, i ? a[i - 1] + ws[i - 1] + 1.4 : 0], []);
+  const total = xs[xs.length - 1] + ws[ws.length - 1];
+  return (
+    <svg className="rc-bar" viewBox={`0 0 ${total} 34`} preserveAspectRatio="none" aria-hidden>
+      {ws.map((w, i) => <rect key={i} x={xs[i]} y="0" width={w} height="34" fill="currentColor" />)}
+    </svg>
+  );
+}
 
 export function PricingCards() {
   const { open } = useModal();
   return (
     <div className="plans">
-      {PLANS.map((p) => {
+      {PLANS.map((p, idx) => {
         const [cur, amt] = p.price.startsWith("Rs ") ? ["Rs", p.price.slice(3)] : ["", p.price];
         return (
-          <article key={p.name} className={`plan rv${p.popular ? " pop" : ""}`}>
-            {p.popular && <span className="plan-badge"><span aria-hidden>★</span> Most popular</span>}
-            <header className="plan-head">
-              <span className="plan-ico" aria-hidden>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{PLAN_ICON[p.name]}</svg>
-              </span>
-              <div>
-                <h3>{p.name}</h3>
-                <p className="plan-tag">{p.tag}</p>
+          <div key={p.name} className={`rc-wrap rv rc-${idx}${p.popular ? " pop" : ""}`}>
+            {p.popular && (
+              <span className="rc-stamp" aria-label="Most popular"><span>★ Most ★</span><b>Popular</b><span>Campra</span></span>
+            )}
+            <article className="rc">
+              <div className="rc-top mono"><span>{CONFIG.brand.toUpperCase()} POS</span><span>PLAN 0{idx + 1}</span></div>
+              <h3 className="rc-name">{p.name}</h3>
+              <p className="rc-tag mono">{p.tag}</p>
+
+              <div className="rc-cut" />
+              <ul className="rc-lines mono">
+                {p.limits.map((l) => <li key={l}><span>{l}</span><i /><b>✓</b></li>)}
+              </ul>
+              <div className="rc-cut" />
+
+              <div className="rc-total">
+                <span className="mono">TOTAL</span>
+                <div className="rc-amt">{cur && <small>{cur}</small>}<b>{amt}</b></div>
               </div>
-            </header>
+              <p className="rc-per mono">{p.unit ? p.unit.replace(/^\/\s*/, "per ") : "volume pricing · let's talk"}</p>
 
-            <div className="plan-price">
-              {cur && <span className="cur">{cur}</span>}
-              <b>{amt}</b>
-              {p.unit && <span className="per">{p.unit}</span>}
-            </div>
-            <p className="plan-note">{p.note}</p>
+              <button className="rc-cta" onClick={() => open(p.kind, `I'm interested in the ${p.name} plan.`)}>
+                <span>{p.cta}</span><span className="ar"><Arr /></span>
+              </button>
 
-            <div className="plan-limits">{p.limits.map((l) => <span key={l}>{l}</span>)}</div>
+              <div className="rc-cut" />
+              <p className="rc-h mono">Items included</p>
+              <ul className="rc-feats">
+                {p.feats.map((f, i) => (
+                  <li key={f} className={i === 0 && f.startsWith("Everything") ? "all" : ""}><span className="mono">{String(i + 1).padStart(2, "0")}</span>{f}</li>
+                ))}
+              </ul>
 
-            <button className={`plan-cta${p.popular ? " light" : ""}`} onClick={() => open(p.kind, `I'm interested in the ${p.name} plan.`)}>
-              {p.cta}
-              <span className="ar"><Arr /></span>
-            </button>
-
-            <div className="plan-inc">What&apos;s included</div>
-            <ul className="plan-feats">
-              {p.feats.map((f, i) => (
-                <li key={f} className={i === 0 && f.startsWith("Everything") ? "all" : ""}>
-                  <span className="ck"><Check size={10} color="currentColor" /></span>{f}
-                </li>
-              ))}
-            </ul>
-          </article>
+              <div className="rc-foot">
+                <Barcode seed={idx + 3} />
+                <p className="mono">{p.note}</p>
+              </div>
+            </article>
+          </div>
         );
       })}
     </div>
