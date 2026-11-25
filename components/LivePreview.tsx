@@ -56,7 +56,7 @@ export function PreviewBtn({ cls, label = "Live Preview" }: { cls: string; label
         </button>
       </div>
       <div className="pv-stage">
-        <div className={`pv-frame${dev === "phone" ? " phone" : ""}`}>
+        <div className={`pv-frame${dev === "phone" ? " mob" : ""}`}>
           {!loaded && <div className="pv-load">Loading the POS…</div>}
           {open || loaded ? (
             <iframe src={CONFIG.demoUrl} title={`${CONFIG.brand} POS live preview`} allow="clipboard-write" onLoad={() => setLoaded(true)} />

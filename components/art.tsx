@@ -1,6 +1,5 @@
 // Decorative artwork for the home page (hero diamonds, promise chips, owner-app phones, QR mark).
 import { CONFIG } from "@/lib/config";
-import { SHOPS, rs } from "@/lib/content";
 
 function Diamond({ id }: { id: string }) {
   return (
@@ -33,50 +32,17 @@ export const Chips = ({ items }: { items: string[] }) => (
   <span className="chips">{items.map((k) => <div className="chp" key={k}>{CHIPS[k]}</div>)}</span>
 );
 
-const Status = () => <div className="ph-s"><span>9:41</span><span>▮▮▮ ◔ ▬</span></div>;
-
+// Owner app phones: real screenshots of the POS mobile app (Head Office role).
 export function Phones() {
-  const alerts: [string, string, string, string][] = [
-    ["⚠️", "Cash short Rs 1,200", "Multan Bypass · Sana · 16:05", "#fdecec"],
-    ["📦", "Sugar 1kg out of stock", "Islamabad F-10 · reorder 50", "#fff3e3"],
-    ["↩️", "Refund Rs 2,450", "Lahore Thokar · Usman · 11:42", "#F1E7FF"],
-    ["📶", "Shop offline 12 min", "Multan Bypass · billing offline", "#e8f2ff"],
-    ["🏷️", "Price updated", "Cooking Oil 1L · all shops", "#e9f9ef"],
-  ];
   return (
     <div className="phones">
       <div className="phone p1">
-        <Status />
-        <div className="ph-c">
-          <div className="ph-h"><b>{CONFIG.brand}</b><span style={{ width: 30, height: 30, borderRadius: "50%", background: "#F1E7FF", display: "grid", placeItems: "center" }}>🔔</span></div>
-          <div className="ph-card"><small>Today · All shops</small><b>Rs 18,42,350</b><small>▲ 8.2% vs yesterday · 3,912 bills</small></div>
-          <div style={{ display: "flex", justifyContent: "space-between", margin: "4px 0 10px" }}><b style={{ fontSize: 14 }}>Shops</b><span style={{ color: "#8E33FF" }}>See all</span></div>
-          {SHOPS.slice(0, 5).map((s) => (
-            <div className="ph-row" key={s[0]}>
-              <div><b>{s[0]}</b><small>{s[1]} · {s[3] ? "Online" : "Offline"}</small></div>
-              <b style={{ color: s[3] ? "#181818" : "#e5484d" }}>{rs(s[2])}</b>
-            </div>
-          ))}
-        </div>
-        <div className="ph-tab"><span className="on">● Home</span><span>Shops</span><span>Stock</span><span>Alerts</span></div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="ph-img" src="/mobile/owner_home.webp" alt={`${CONFIG.brand} owner app: today's sale for all shops`} loading="lazy" draggable={false} />
       </div>
       <div className="phone p2">
-        <Status />
-        <div className="ph-c">
-          <div className="ph-h"><b>Alerts</b><span style={{ color: "#8E33FF", fontSize: 12 }}>Mark all read</span></div>
-          <div style={{ background: "linear-gradient(135deg,#F1E7FF,#fff)", borderRadius: 16, padding: 14, marginBottom: 12 }}>
-            <small style={{ color: "#8E33FF", fontWeight: 600 }}>Daily report ready</small>
-            <b style={{ display: "block", fontSize: 16, margin: "4px 0" }}>Closing summary · 22 Nov</b>
-            <small style={{ color: "#777" }}>150 shops · sent to WhatsApp</small>
-            <div style={{ marginTop: 10, background: "#8E33FF", color: "#fff", borderRadius: 20, padding: "7px 14px", width: "fit-content", fontSize: 11 }}>Open report ›</div>
-          </div>
-          {alerts.map((a) => (
-            <div className="ph-row" key={a[1]} style={{ background: a[3], justifyContent: "flex-start", gap: 10 }}>
-              <span style={{ fontSize: 18 }}>{a[0]}</span><div><b>{a[1]}</b><small>{a[2]}</small></div>
-            </div>
-          ))}
-        </div>
-        <div className="ph-tab"><span>Home</span><span>Shops</span><span>Stock</span><span className="on">● Alerts</span></div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="ph-img" src="/mobile/owner_shops.webp" alt={`${CONFIG.brand} owner app: every shop ranked by today's sale`} loading="lazy" draggable={false} />
       </div>
     </div>
   );

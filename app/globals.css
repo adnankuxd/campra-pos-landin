@@ -162,6 +162,7 @@ h2.h b{font-style:normal;font-weight:600;color:var(--p)}
 .phones{position:absolute;left:80px;top:-190px;width:560px;height:900px}
 .phone{position:absolute;width:330px;height:700px;border-radius:46px;background:#fff;border:9px solid #f4f4f6;box-shadow:0 0 0 1.5px #d8d8de,0 30px 60px rgba(30,0,80,.25);overflow:hidden;font-size:12px;color:#181818}
 .phone.p1{left:0;top:0}.phone.p2{left:200px;top:160px}
+.ph-img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;user-select:none}
 .ph-s{display:flex;justify-content:space-between;padding:12px 22px 6px;font-weight:600;font-size:13px}
 .qr-side{position:absolute;right:120px;top:170px;width:300px;text-align:center}
 .qr-side h3{font-size:44px;font-weight:400;line-height:1.15;margin-top:110px;color:#181818;font-family:Poppins,sans-serif}
@@ -555,7 +556,7 @@ header.nav{padding-inline:max(var(--gutter),calc((100% - var(--maxw))/2))}
 .pv-x{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center}
 .pv-stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
 .pv-frame{width:100%;max-width:1400px;height:100%;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);transition:max-width .35s,border-radius .35s;position:relative}
-.pv-frame.phone{max-width:390px;max-height:844px;border-radius:44px;border:10px solid #111}
+.pv-frame.mob{max-width:390px;max-height:844px;border-radius:44px;border:10px solid #111}
 .pv-frame iframe{width:100%;height:100%;border:0;display:block}
 .pv-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--mut);font-size:14px;background:var(--card)}
 @media(max-width:760px){.pv{padding:10px}.pv-seg,.pv-bar b small{display:none}.pv-frame{border-radius:16px}}
