@@ -38,11 +38,11 @@ export function Phones() {
     <div className="phones">
       <div className="phone p1">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="ph-img" src="/mobile/owner_home.webp" alt={`${CONFIG.brand} owner app: today's sale for all shops`} loading="lazy" draggable={false} />
+        <img className="ph-img" src="/mobile/owner_home.webp" alt={`${CONFIG.brand} owner app: today's sale for all shops`} draggable={false} />
       </div>
       <div className="phone p2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="ph-img" src="/mobile/owner_shops.webp" alt={`${CONFIG.brand} owner app: every shop ranked by today's sale`} loading="lazy" draggable={false} />
+        <img className="ph-img" src="/mobile/owner_shops.webp" alt={`${CONFIG.brand} owner app: every shop ranked by today's sale`} draggable={false} />
       </div>
     </div>
   );

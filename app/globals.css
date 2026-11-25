@@ -295,7 +295,7 @@ footer li a:hover{color:var(--p)}
 
 /* about */
 .story{background:var(--card);text-align:center;padding:90px 32px 150px;position:relative;border:0}
-.story p{max-width:900px;margin:0 auto;font-size:clamp(24px,2.6vw,34px);line-height:1.3;color:var(--mut);text-transform:capitalize}
+.story p{max-width:900px;margin:0 auto;font-size:clamp(24px,2.6vw,34px);line-height:1.3;color:var(--mut)}
 .story p b{color:var(--ink);font-weight:500}
 .tornT{position:absolute;left:0;right:0;height:90px;background:url(/img/torn.webp) center/100% 100% no-repeat}
 .mv{display:grid;grid-template-columns:1fr 1fr;gap:46px;max-width:880px;margin:0 auto}
@@ -304,7 +304,7 @@ footer li a:hover{color:var(--p)}
 .mvc img{width:130px;margin:20px auto 30px;position:relative;filter:drop-shadow(0 10px 20px rgba(0,0,0,.15))}
 .mvc h4{font-size:32px;font-weight:400;font-style:italic;position:relative}
 .mvc h4 b{font-style:normal;font-weight:500;color:var(--c)}
-.mvc p{color:var(--mut);margin-top:30px;line-height:1.55;position:relative;text-transform:capitalize}
+.mvc p{color:var(--mut);margin-top:30px;line-height:1.55;position:relative}
 .believe{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1390px;margin:0 auto}
 .bl{background:var(--bg);border-radius:30px;padding:32px 32px 40px}
 .bl .ic{width:88px;height:88px;border-radius:18px;background:#181818;display:grid;place-items:center;color:#fff;position:relative;overflow:hidden}
@@ -620,3 +620,160 @@ header.nav{padding-inline:max(var(--gutter),calc((100% - var(--maxw))/2))}
 .form-err{background:#fdecec;color:#b42318;border-radius:12px;padding:10px 14px;font-size:13px}
 .form-err a{color:inherit;font-weight:600;text-decoration:underline}
 .fg button[disabled]{opacity:.7;cursor:progress}
+
+/* =====================================================================
+   LAPTOP LAYER (25 Nov): sized for 1280–1600px wide, 650–800px tall
+   screens (1366x768, 1920x1080 @125%). Each section should read in one
+   or two screens; the demo screen always fits inside the viewport height.
+   Mobile/tablet (≤1100px) keeps its own rules above.
+   ===================================================================== */
+@media (min-width:1101px){
+  :root{--maxw:1180px}
+  header.nav{height:64px}
+  .logo{font-size:26px}
+  .circ{width:42px;height:42px}
+  section{padding-block:clamp(52px,8vh,84px)}
+  .lbl{font-size:15px;margin-bottom:12px}
+  .lbl.serif{font-size:18px}
+  h2.h{font-size:clamp(28px,2.5vw,38px);margin-bottom:clamp(24px,4vh,40px);letter-spacing:-1px}
+
+  /* hero fits the first screen */
+  .hero{min-height:min(620px,calc(100vh - 88px));padding-top:clamp(28px,5vh,48px)}
+  .pill{padding:9px 18px;font-size:13px}
+  .hero h1{margin-top:clamp(18px,3.5vh,30px);font-size:clamp(44px,4.9vw,74px);letter-spacing:-2.4px}
+  .hero p.sub{margin-top:clamp(14px,2.6vh,24px);font-size:16px}
+  .hero .cta{margin-top:clamp(20px,3.6vh,32px)}
+  .scroll{margin-top:clamp(18px,4vh,40px)}
+  .dias{top:auto;bottom:clamp(40px,8vh,90px);transform:scale(.82);transform-origin:bottom center}
+  .marq{height:52px;margin-top:16px}
+  .marq-t{font-size:16px}
+  .promise{font-size:clamp(28px,3.6vw,52px);max-width:1000px}
+
+  /* product demo: side panel (tabs, description, screen list) + app screen sized to the viewport height */
+  .demo-wrap{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;align-items:center;max-width:var(--maxw)}
+  .demo-side{display:flex;flex-direction:column;gap:16px;align-self:center}
+  .demo-wrap .tabs{display:flex!important;width:100%!important;gap:4px;padding:5px!important;background:var(--chip);border-radius:999px;margin:0!important}
+  .demo-wrap .tab{flex:1;height:40px;padding:0 12px;border-radius:999px;font-size:14px;font-weight:500;background:transparent;border:0;color:var(--mut);white-space:nowrap}
+  .demo-wrap .tab:hover{color:var(--ink)}
+  .demo-wrap .tab.on{background:var(--p);color:#fff;box-shadow:0 6px 16px rgba(142,51,255,.3)}
+  .demo-wrap .desc{background:transparent;min-height:0;padding:0!important;margin:0!important;max-width:none}
+  .demo-wrap .desc h4{font-size:18px;margin-bottom:6px;letter-spacing:-.2px}
+  .demo-wrap .desc p{font-style:normal;font-size:13.5px;line-height:1.55;min-height:7.75em;-webkit-line-clamp:5;color:var(--mut)}
+  .demo-wrap .demo{width:100%!important;max-width:calc((100vh - 96px) * 1.3846);justify-self:end}
+  .demo-frame{padding:8px}
+  .demo-wrap .demo-frame{border-radius:20px}
+  .demo-screen{border-radius:14px}
+  /* upcoming modules: smaller tiles */
+  .mods{gap:18px;max-width:980px}
+  .mod{aspect-ratio:1.7;border-radius:24px;font-size:18px}
+
+  /* problem / solution */
+  .ps{height:440px;max-width:920px}
+  .ps-a{width:450px;top:10px}
+  .ps-b{width:440px;top:50px}
+  .ps-a .in{padding:22px 20px 24px}
+  .ps-b .in{padding:20px 18px 24px}
+  .ps-a h5,.ps-b h5{font-size:20px;margin:0 0 16px 70px}
+  .ps-it{padding:11px 14px;font-size:14px;margin-bottom:8px}
+
+  /* how it works */
+  .st .ic{width:76px;height:76px;border-radius:18px}
+  .st h6{font-size:17px}
+  .st p{font-size:14px}
+
+  /* data cards */
+  .dc{max-width:1100px;gap:18px}
+  .dcard{padding:30px 20px;border-radius:24px}
+  .dcard .ic{width:62px;height:62px;margin-bottom:16px}
+  .dcard h6{font-size:18px}
+
+  /* owner app */
+  .app{padding-top:120px;max-width:1100px}
+  .app-box{min-height:600px;padding:110px 48px 40px;border-radius:44px}
+  .phones{transform:scale(.78);transform-origin:top left;top:-150px;left:60px}
+  .qr-side{top:110px;right:90px;width:280px}
+  .qr-side svg{width:110px;height:110px}
+  .qr-side h3{font-size:34px;margin-top:40px}
+  .qr-side p{font-size:16px}
+  .qr-side .btn{margin-top:24px;height:50px}
+  .fpills{bottom:28px}
+
+  /* pricing receipts */
+  .plans{max-width:1060px;gap:28px;padding-top:10px}
+  .rc{padding:24px 24px 40px}
+  .rc-name{font-size:38px;margin-top:16px}
+  .rc-cut{margin:16px -4px}
+  .rc-lines{gap:8px;font-size:12.5px}
+  .rc-amt b{font-size:48px}
+  .rc-cta{height:48px;margin-top:18px;font-size:14px}
+  .rc-cta .ar{width:38px;height:38px}
+  .rc-feats{gap:7px;font-size:13.5px}
+  .rc-foot{margin-top:18px}
+  .rc-stamp{width:90px;height:90px;top:-20px}
+  .rc-stamp b{font-size:16px}
+  .plans-foot{margin-top:36px}
+
+  /* testimonials + faq */
+  .tbox{padding:48px 120px;border-radius:40px;max-width:1100px}
+  .tbox .q{font-size:220px;right:120px;top:20px}
+  .tq{font-size:clamp(20px,1.9vw,27px);min-height:130px}
+  .fbox{padding:40px 96px 48px;border-radius:40px;max-width:1100px}
+
+  /* bento */
+  .bento{max-width:1180px;gap:20px}
+  .bcol{gap:20px}
+  .bmid{min-height:600px}
+
+  /* contact + footer */
+  .talk{padding-bottom:40px}
+  .talk .big{font-size:clamp(80px,11vw,160px);letter-spacing:-5px;margin:16px 0 36px}
+  footer{padding:40px 56px 32px}
+  footer h3{font-size:clamp(28px,2.6vw,40px);margin:24px 0 16px}
+  footer h4{font-size:20px;margin-bottom:18px}
+  footer li{margin-bottom:12px}
+
+  /* inner pages */
+  .phero{min-height:400px}
+  .phero .grid{padding:20px 48px 110px}
+  .stepbox{padding:36px 48px;border-radius:36px;gap:44px}
+  .stepbox h3{font-size:clamp(24px,2vw,32px)}
+  .stepbox p{font-size:15px}
+  .blist{margin-top:20px}
+  .blist div{padding:13px 20px;font-size:15px}
+  .doc{padding:44px 56px;border-radius:32px}
+  .ptabs{display:flex!important;width:fit-content;max-width:calc(100% - 64px);margin:32px auto!important;padding:5px!important;gap:4px;background:var(--chip);border-radius:999px}
+  .ptabs .tab{height:42px;padding:0 26px;border-radius:999px;font-size:15px;font-weight:500;background:transparent;border:0;color:var(--mut)}
+  .ptabs .tab.on{background:var(--p);color:#fff;box-shadow:0 6px 16px rgba(142,51,255,.3)}
+  .totop{width:46px;height:46px;right:20px;bottom:20px;box-shadow:0 0 0 4px rgba(0,0,0,.06),0 8px 20px rgba(0,0,0,.3)}
+}
+/* short laptop screens (≤760px tall): tighten the first screen further */
+@media (min-width:1101px) and (max-height:760px){
+  .hero h1{font-size:clamp(40px,4.4vw,64px)}
+  .scroll{display:none}
+}
+.demo-hint{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:12.5px;font-weight:500;color:var(--p);background:var(--p-soft);padding:6px 12px;border-radius:999px}
+
+/* demo screen list (all sizes) */
+.demo-list small{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+.demo-list ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.demo-list button{width:100%;display:flex;align-items:center;gap:10px;text-align:left;padding:8px 12px;border-radius:10px;font-size:14px;color:var(--ink);transition:background .2s,color .2s}
+.demo-list button:hover{background:var(--chip)}
+.demo-list button.on{background:var(--p-soft);color:var(--p);font-weight:600}
+.demo-list .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.35;flex:none}
+.demo-list button.on .dot{opacity:1}
+.demo-hint{align-self:flex-start}
+@media (max-width:1100px){
+  .demo-wrap{display:flex;flex-direction:column}
+  .demo-side{display:contents}
+  .demo-wrap .tabs{order:1}
+  .demo-wrap .desc{order:2}
+  .demo-list{order:3;margin:0 0 14px}
+  .demo-list small{display:none}
+  .demo-list ul{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .demo-list ul::-webkit-scrollbar{display:none}
+  .demo-list button{white-space:nowrap;background:var(--card);border-radius:999px;padding:8px 14px;font-size:13px}
+  .demo-list .dot{display:none}
+  .demo-hint{display:none}
+  .demo-wrap .demo{order:4}
+}
+.demo-eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--p);margin-bottom:4px}

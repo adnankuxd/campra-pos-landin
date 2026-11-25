@@ -30,7 +30,7 @@ export const JOBS: Record<string, { h: string; s: { d: string; m: string; to: st
     {d:"The live dashboard shows the sales trend, day against night shift, cash against card and QR, and the people on duty, for any day, week, month or year.",m:"dashboard",to:"/features/dashboard"},
   ]},
 };
-export const MODS = [["Loyalty Points","Rewards for regulars"],["Supplier Orders","Auto purchase orders"],["Online Store","Sell on your website"],["Delivery App","Riders & tracking"],["Expiry Alerts","Batch & expiry dates"],["Payroll","Salaries & advances"],["Price Labels","Shelf label printing"],["Franchise Mode","Multi-owner chains"]];
+export const MODS = [["Loyalty Points","Rewards for regulars"],["Supplier Auto-Orders","Reorder before stock runs out"],["Online Store","Sell on your website"],["Delivery App","Riders & tracking"],["Shelf Labels","Print price labels"],["Accounting Export","Send books to your accountant"],["Customer App","Offers & digital receipts"],["Gift Cards","Prepaid cards for customers"]];
 
 export const FAQ: Record<string, [string, string][]> = {
   "Owners":[

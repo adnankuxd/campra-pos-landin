@@ -35,28 +35,8 @@ export default function Home() {
           <div className="row">One calm place for all of it.</div>
         </div>
       </section>
-
-      <section id="features">
-        <Label>One System</Label>
-        <h2 className="h">The <b>everyday problem,</b> shop work<br />should not be this hard</h2>
-        <AppDemo setups={ONE_SYSTEM} />
-      </section>
-
       <section>
-        <Label>What You Can Do</Label>
-        <h2 className="h">The <b>Three Jobs</b> that eat your week</h2>
-        <AppDemo setups={THREE_JOBS} jobs />
-      </section>
-
-      <section>
-        <Label>Upcoming Modules</Label>
-        <h2 className="h">More modules are <b>on the way</b></h2>
-        <ModulesGrid />
-        <p style={{ textAlign: "center", color: "var(--mut)", marginTop: 40, fontSize: 14 }}>Tap a module to get notified when it launches.</p>
-      </section>
-
-      <section>
-        <Label>Problem And The Solution</Label>
+        <Label>The Problem</Label>
         <h2 className="h"><b>Shop work</b> should not be this hard</h2>
         <div className="ps rv">
           <div className="ps-a"><div className="in"><h5>Problem</h5>
@@ -72,40 +52,16 @@ export default function Home() {
           </div></div>
         </div>
       </section>
-
-      <section id="how">
-        <Label>How It Works</Label>
-        <h2 className="h">Up and running in <b>four steps</b></h2>
-        <div className="steps">
-          <svg className="cv" viewBox="0 0 900 110" preserveAspectRatio="none"><path d="M60 40 Q170 -10 280 40" fill="none" stroke="#bbb" strokeDasharray="5 6" /><path d="M340 50 Q450 110 560 50" fill="none" stroke="#bbb" strokeDasharray="5 6" /><path d="M620 40 Q730 -10 840 40" fill="none" stroke="#bbb" strokeDasharray="5 6" /></svg>
-          {[
-            [P.check, "Book a demo", "We show you the system with your shops and products in mind."],
-            [P.sliders, "We set up your shops", "Your branches, counters, prices and staff roles are configured."],
-            [P.file, "We move your products", "Send us your item list with barcodes. We check it before anything goes live."],
-            [P.msg, "Train cashiers and go live", "Cashiers learn billing in a day. Your whole chain runs on one system."],
-          ].map(([d, t, p], i) => (
-            <div className="st rv" key={t} style={{ transitionDelay: `${i * 0.1}s` }}>
-              <div className="ic"><Ico d={d} /></div><h6>{t}</h6><p>{p}</p>
-            </div>
-          ))}
-        </div>
+      <section id="features">
+        <Label>One System</Label>
+        <h2 className="h">One system for <b>head office</b> and <b>every counter</b></h2>
+        <AppDemo setups={ONE_SYSTEM} />
       </section>
-
       <section>
-        <Label>About Your Data</Label>
-        <h2 className="h">Your <b>data stays safe,</b> and stays yours</h2>
-        <div className="dc">
-          {[
-            [P.lock, "Controlled access", "Cashiers see their counter. Managers see their shop. Owners see everything."],
-            [P.log, "Full activity log", "Every refund, discount and price change is recorded with who and when."],
-            [P.wifi, "Works offline", "Billing keeps running when the internet drops and syncs when it's back."],
-            [P.export, "Your data is yours", "Export your sales, stock and customers any time."],
-          ].map(([d, t, p]) => (
-            <div className="dcard rv" key={t}><div className="ic"><Ico d={d} size={30} color="currentColor" /></div><h6>{t}</h6><p>{p}</p></div>
-          ))}
-        </div>
+        <Label>What You Can Do</Label>
+        <h2 className="h">The <b>Three Jobs</b> that eat your week</h2>
+        <AppDemo setups={THREE_JOBS} jobs />
       </section>
-
       <section>
         <Label>Owner App</Label>
         <h2 className="h">Keep an eye on every shop, <b>on any phone</b></h2>
@@ -124,26 +80,59 @@ export default function Home() {
           </div>
         </div></div>
       </section>
-
+      <section>
+        <Label>About Your Data</Label>
+        <h2 className="h">Your <b>data stays safe,</b> and stays yours</h2>
+        <div className="dc">
+          {[
+            [P.lock, "Controlled access", "Cashiers see their counter. Managers see their shop. Owners see everything."],
+            [P.log, "Full activity log", "Every refund, discount and price change is recorded with who and when."],
+            [P.wifi, "Works offline", "Billing keeps running when the internet drops and syncs when it's back."],
+            [P.export, "Your data is yours", "Export your sales, stock and customers any time."],
+          ].map(([d, t, p]) => (
+            <div className="dcard rv" key={t}><div className="ic"><Ico d={d} size={30} color="currentColor" /></div><h6>{t}</h6><p>{p}</p></div>
+          ))}
+        </div>
+      </section>
+      <section id="how">
+        <Label>How It Works</Label>
+        <h2 className="h">Up and running in <b>four steps</b></h2>
+        <div className="steps">
+          <svg className="cv" viewBox="0 0 900 110" preserveAspectRatio="none"><path d="M60 40 Q170 -10 280 40" fill="none" stroke="#bbb" strokeDasharray="5 6" /><path d="M340 50 Q450 110 560 50" fill="none" stroke="#bbb" strokeDasharray="5 6" /><path d="M620 40 Q730 -10 840 40" fill="none" stroke="#bbb" strokeDasharray="5 6" /></svg>
+          {[
+            [P.check, "Book a demo", "We show you the system with your shops and products in mind."],
+            [P.sliders, "We set up your shops", "Your branches, counters, prices and staff roles are configured."],
+            [P.file, "We move your products", "Send us your item list with barcodes. We check it before anything goes live."],
+            [P.msg, "Train cashiers and go live", "Cashiers learn billing in a day. Your whole chain runs on one system."],
+          ].map(([d, t, p], i) => (
+            <div className="st rv" key={t} style={{ transitionDelay: `${i * 0.1}s` }}>
+              <div className="ic"><Ico d={d} /></div><h6>{t}</h6><p>{p}</p>
+            </div>
+          ))}
+        </div>
+      </section>
       <section id="pricing">
         <Label>Pricing</Label>
         <h2 className="h">Simple pricing that <b>grows with you</b></h2>
         <PricingCards />
         <p className="plans-foot">Prices in PKR, per counter, per month. Hardware (scanners, printers) is not included. Not sure which plan fits? <ModalLink kind="sales">Talk to sales</ModalLink></p>
       </section>
-
       <section>
         <Label>What Shops Say</Label>
         <h2 className="h">Shops that <b>run on {CONFIG.brand}</b></h2>
         <Testimonials />
       </section>
-
       <section>
         <Label>FAQ</Label>
         <h2 className="h">Questions shops <b>ask us</b></h2>
         <FaqTabs />
       </section>
-
+      <section>
+        <Label>Upcoming Modules</Label>
+        <h2 className="h">More modules are <b>on the way</b></h2>
+        <ModulesGrid />
+        <p style={{ textAlign: "center", color: "var(--mut)", marginTop: 28, fontSize: 14 }}>Click a module to get notified when it launches.</p>
+      </section>
       <section className="nob" style={{ paddingTop: 20 }}>
         <div className="bento">
           <div className="bcol">

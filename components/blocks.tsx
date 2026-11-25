@@ -108,7 +108,7 @@ export function Footer() {
       <footer>
         <div>
           <Link href="/" className="logo purple">{CONFIG.brand}</Link>
-          <h3>Ready to simplify<br />your business?</h3>
+          <h3>Point of sale,<br />made simple.</h3>
           <p className="fp">See {CONFIG.brand} in action. Book a free demo and we will show you how it fits your shops.</p>
           <div className="soc">
             <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="#8E33FF" /><circle cx="12" cy="12" r="4" fill="none" stroke="#fff" strokeWidth="2" /></svg></a>
