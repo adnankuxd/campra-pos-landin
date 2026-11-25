@@ -37,7 +37,7 @@ export const FAQ: Record<string, [string, string][]> = {
     ["Can I see all my shops from one place?","Yes. The head office dashboard shows live sales, stock and cash for every shop, and the owner app shows the same numbers on your phone."],
     ["What happens if a shop loses internet?","Billing keeps working offline. Bills are saved on the counter and sync to head office as soon as the internet is back. Nothing is lost."],
     ["Does it work with FBR?","Yes. Invoices can be reported to FBR's POS integration, and each receipt carries its FBR invoice number and QR code."],
-    ["How is pricing worked out?","You pay per counter, per month. After a short demo we give you a clear quote based on the number of shops and the modules you need."],
+    ["How is pricing worked out?","You pay per counter, per month. Starter is for a single shop, Chain covers up to 25 shops, and larger chains get an Enterprise quote after a short demo."],
   ],
   "Cashiers":[
     ["How long does it take to learn?","Most cashiers are billing confidently on their first day. The screen is in Urdu and English, with big buttons and quick keys."],
@@ -156,3 +156,20 @@ export const PORTALS: Record<string, { t: string; s: string; steps: Step[] }> = 
 export const SHOPS: [string,string,number,number][] =[["Peshawar Ring Rd","Peshawar",248300,1],["Mardan Bypass","Mardan",162450,1],["Islamabad F-10","Islamabad",311900,1],["Rawalpindi Saddar","Rawalpindi",205700,1],["Bhera Service Area","M-2",188200,1],["Lahore Thokar","Lahore",342100,1],["Multan Bypass","Multan",151900,0],["Sukkur Toll Plaza","Sukkur",129400,1]];
 
 export const rs = (n: number) => "Rs " + n.toLocaleString("en-PK");
+
+// Pricing plans (PKR, per counter per month). Suggested prices — confirm before going public.
+export type Plan = { name: string; tag: string; price: string; unit: string; note: string; limits: string[]; feats: string[]; cta: string; kind: "demo" | "sales"; popular?: boolean };
+export const PLANS: Plan[] = [
+  { name: "Starter", tag: "For a single shop", price: "Rs 2,500", unit: "/ counter / month", note: "Billed monthly · 1 shop",
+    limits: ["1 shop", "Up to 3 counters", "Owner, manager & cashier logins"],
+    feats: ["Fast billing in Urdu & English", "Barcode scanning & receipts", "Stock, low-stock & expiry", "Blind shift close", "Returns with manager PIN", "FBR-ready invoices", "Daily WhatsApp report", "Owner app on your phone"],
+    cta: "Book a Demo", kind: "demo" },
+  { name: "Chain", tag: "For 2 to 25 shops", price: "Rs 3,500", unit: "/ counter / month", note: "Billed monthly · priced per counter", popular: true,
+    limits: ["Up to 25 shops", "Unlimited counters", "Head office, manager & cashier logins"],
+    feats: ["Everything in Starter", "Head office dashboard for all shops", "One price list for every shop", "Purchases from approved suppliers", "Staff, leave & payroll", "Expense approvals", "Blind stock counts", "Partners & profit shares", "Monthly report for every shop"],
+    cta: "Book a Demo", kind: "demo" },
+  { name: "Enterprise", tag: "For 25+ shops", price: "Custom", unit: "", note: "Volume pricing for large chains",
+    limits: ["Unlimited shops & counters", "Regional & audit officer logins", "Custom roles"],
+    feats: ["Everything in Chain", "Audit officer portal & red flags", "Full audit log of every change", "Bill and invoice photo gallery", "Data import from your old system", "On-site setup & staff training", "Priority support"],
+    cta: "Contact Sales", kind: "sales" },
+];

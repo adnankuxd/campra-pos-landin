@@ -560,3 +560,26 @@ header.nav{padding-inline:max(var(--gutter),calc((100% - var(--maxw))/2))}
 .pv-frame iframe{width:100%;height:100%;border:0;display:block}
 .pv-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--mut);font-size:14px;background:var(--card)}
 @media(max-width:760px){.pv{padding:10px}.pv-seg,.pv-bar b small{display:none}.pv-frame{border-radius:16px}}
+
+/* ---------- pricing plans ---------- */
+.plans{max-width:var(--maxw,1312px);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{position:relative;background:var(--card);border-radius:32px;padding:36px 32px 34px;box-shadow:var(--shadow);display:flex;flex-direction:column;border:1px solid var(--line)}
+.plan h3{font-family:Urbanist,sans-serif;font-size:26px;font-weight:600;letter-spacing:-.4px}
+.plan-tag{color:var(--mut);font-size:14px;margin-top:4px}
+.plan-price{display:flex;align-items:baseline;gap:8px;margin-top:26px;flex-wrap:wrap}
+.plan-price b{font-size:42px;font-weight:600;letter-spacing:-1.4px;line-height:1}
+.plan-price span{font-size:14px;color:var(--mut)}
+.plan-note{font-size:13px;color:var(--mut);margin-top:8px}
+.plan-cta{margin-top:26px;justify-content:space-between;width:100%}
+.plan-limits{list-style:none;margin:28px 0 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:8px;font-size:14px;font-weight:500}
+.plan-feats{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px;font-size:14px;line-height:1.4}
+.plan-feats li{display:flex;gap:10px;align-items:flex-start}
+.plan .ck{flex:none;width:20px;height:20px;border-radius:50%;background:var(--p);display:grid;place-items:center;margin-top:-1px}
+.plan.pop{background:linear-gradient(160deg,#9a47ff 0%,#8E33FF 45%,#7a22ef 100%);color:#fff;border-color:transparent;box-shadow:0 30px 60px rgba(142,51,255,.35);transform:translateY(-16px)}
+.plan.pop .plan-tag,.plan.pop .plan-price span,.plan.pop .plan-note{color:rgba(255,255,255,.8)}
+.plan.pop .plan-limits{border-color:rgba(255,255,255,.25)}
+.plan.pop .ck{background:#fff}
+.plan-badge{position:absolute;top:24px;right:24px;background:#fff;color:var(--p);font-size:12px;font-weight:600;padding:6px 12px;border-radius:30px}
+.plans-foot{text-align:center;color:var(--mut);font-size:14px;margin:40px auto 0;max-width:720px;line-height:1.6}
+.plans-foot a{color:var(--p);font-weight:500}
+@media(max-width:1000px){.plans{grid-template-columns:1fr;max-width:520px}.plan.pop{transform:none}}

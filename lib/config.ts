@@ -7,7 +7,6 @@ export const CONFIG = {
   playStore: "https://play.google.com/store",
   demoUrl: "https://pos-psi-henna.vercel.app/",
   stats: { shops: "150+", cashiers: "2.5k", bills: "1.6M", bento: "112", happy: "12K" },
-  pricePerCounter: 3500, // Rs / counter / month (price estimator)
 };
 
 export const waLink = (text: string) =>

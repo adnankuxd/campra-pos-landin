@@ -4,7 +4,7 @@ import { FaqTabs, Testimonials } from "@/components/interactive";
 import AppDemo from "@/components/AppDemo";
 import { PreviewBtn } from "@/components/LivePreview";
 import { ONE_SYSTEM, THREE_JOBS } from "@/lib/appdemo";
-import { GenerateReport, ModalBtn, ModulesGrid, PriceEstimator } from "@/components/ui";
+import { GenerateReport, ModalBtn, ModalLink, ModulesGrid, PricingCards } from "@/components/ui";
 import { Chips, Diamonds, Phones, QrMark } from "@/components/art";
 import { Check, Ico, P } from "@/components/icons";
 
@@ -127,14 +127,9 @@ export default function Home() {
 
       <section id="pricing">
         <Label>Pricing</Label>
-        <div className="price rv">
-          <div>
-            <h3>Pricing that fits your business.</h3>
-            <p>You pay per counter, for the modules you use. Plans are based on the number of shops you run. We will give you a clear quote after a short demo.</p>
-            <PriceEstimator />
-          </div>
-          <ModalBtn kind="sales" cls="btn-w" label="Contact Sales" />
-        </div>
+        <h2 className="h">Simple pricing that <b>grows with you</b></h2>
+        <PricingCards />
+        <p className="plans-foot">Prices in PKR, per counter, per month. Hardware (scanners, printers) is not included. Not sure which plan fits? <ModalLink kind="sales">Talk to sales</ModalLink></p>
       </section>
 
       <section>

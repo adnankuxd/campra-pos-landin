@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { useModal } from "./ModalProvider";
 import { Arr } from "./icons";
 import { CONFIG, waLink } from "@/lib/config";
-import { MODS, SHOPS } from "@/lib/content";
+import { MODS, PLANS, SHOPS } from "@/lib/content";
+import { Check } from "./icons";
 
 type K = "demo" | "contact" | "sales";
 
@@ -66,13 +67,29 @@ export function GenerateReport() {
   return <button onClick={run}>Generate Daily Report</button>;
 }
 
-export function PriceEstimator() {
-  const [n, setN] = useState(10);
+export function PricingCards() {
+  const { open } = useModal();
   return (
-    <div className="est">
-      Counters: <input type="number" min={1} value={n} onChange={(e) => setN(Math.max(1, +e.target.value || 1))} aria-label="Number of counters" />
-      <span>≈ <b>Rs {(n * CONFIG.pricePerCounter).toLocaleString("en-PK")}</b> / month</span>
-      <span style={{ opacity: 0.75 }}>(estimate)</span>
+    <div className="plans">
+      {PLANS.map((p) => (
+        <div key={p.name} className={`plan rv${p.popular ? " pop" : ""}`}>
+          {p.popular && <span className="plan-badge">Most popular</span>}
+          <h3>{p.name}</h3>
+          <p className="plan-tag">{p.tag}</p>
+          <div className="plan-price"><b>{p.price}</b>{p.unit && <span>{p.unit}</span>}</div>
+          <p className="plan-note">{p.note}</p>
+          <button className={`btn ${p.popular ? "btn-w" : "btn-p"} plan-cta`} onClick={() => open(p.kind, `I'm interested in the ${p.name} plan.`)}>
+            {p.cta}
+            <span className="ar"><Arr /></span>
+          </button>
+          <ul className="plan-limits">{p.limits.map((l) => <li key={l}>{l}</li>)}</ul>
+          <ul className="plan-feats">
+            {p.feats.map((f) => (
+              <li key={f}><span className="ck"><Check size={10} color={p.popular ? "#8E33FF" : "#fff"} /></span>{f}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
