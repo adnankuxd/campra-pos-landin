@@ -67,29 +67,56 @@ export function GenerateReport() {
   return <button onClick={run}>Generate Daily Report</button>;
 }
 
+const PLAN_ICON: Record<string, React.ReactNode> = {
+  Starter: <path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z" />,
+  Chain: <><path d="M3 21h18" /><path d="M5 21V10l4-3 4 3v11" /><path d="M13 21V7l3-3 3 3v14" /><path d="M8 14h2M16 11h0M16 15h0" /></>,
+  Enterprise: <><rect x="4" y="3" width="16" height="18" rx="2" /><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1M10 21v-3h4v3" /></>,
+};
+
 export function PricingCards() {
   const { open } = useModal();
   return (
     <div className="plans">
-      {PLANS.map((p) => (
-        <div key={p.name} className={`plan rv${p.popular ? " pop" : ""}`}>
-          {p.popular && <span className="plan-badge">Most popular</span>}
-          <h3>{p.name}</h3>
-          <p className="plan-tag">{p.tag}</p>
-          <div className="plan-price"><b>{p.price}</b>{p.unit && <span>{p.unit}</span>}</div>
-          <p className="plan-note">{p.note}</p>
-          <button className={`btn ${p.popular ? "btn-w" : "btn-p"} plan-cta`} onClick={() => open(p.kind, `I'm interested in the ${p.name} plan.`)}>
-            {p.cta}
-            <span className="ar"><Arr /></span>
-          </button>
-          <ul className="plan-limits">{p.limits.map((l) => <li key={l}>{l}</li>)}</ul>
-          <ul className="plan-feats">
-            {p.feats.map((f) => (
-              <li key={f}><span className="ck"><Check size={10} color={p.popular ? "#8E33FF" : "#fff"} /></span>{f}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {PLANS.map((p) => {
+        const [cur, amt] = p.price.startsWith("Rs ") ? ["Rs", p.price.slice(3)] : ["", p.price];
+        return (
+          <article key={p.name} className={`plan rv${p.popular ? " pop" : ""}`}>
+            {p.popular && <span className="plan-badge"><span aria-hidden>★</span> Most popular</span>}
+            <header className="plan-head">
+              <span className="plan-ico" aria-hidden>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{PLAN_ICON[p.name]}</svg>
+              </span>
+              <div>
+                <h3>{p.name}</h3>
+                <p className="plan-tag">{p.tag}</p>
+              </div>
+            </header>
+
+            <div className="plan-price">
+              {cur && <span className="cur">{cur}</span>}
+              <b>{amt}</b>
+              {p.unit && <span className="per">{p.unit}</span>}
+            </div>
+            <p className="plan-note">{p.note}</p>
+
+            <div className="plan-limits">{p.limits.map((l) => <span key={l}>{l}</span>)}</div>
+
+            <button className={`plan-cta${p.popular ? " light" : ""}`} onClick={() => open(p.kind, `I'm interested in the ${p.name} plan.`)}>
+              {p.cta}
+              <span className="ar"><Arr /></span>
+            </button>
+
+            <div className="plan-inc">What&apos;s included</div>
+            <ul className="plan-feats">
+              {p.feats.map((f, i) => (
+                <li key={f} className={i === 0 && f.startsWith("Everything") ? "all" : ""}>
+                  <span className="ck"><Check size={10} color="currentColor" /></span>{f}
+                </li>
+              ))}
+            </ul>
+          </article>
+        );
+      })}
     </div>
   );
 }
